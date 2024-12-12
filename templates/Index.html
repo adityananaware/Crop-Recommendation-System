@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Marquee Line -->
+    <div class="marquee">
+        <span>Your crop recommendation is just a click away! Get accurate recommendations based on your soil and climate conditions.</span>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Crop Recommendation System</h1>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="form-container">
+            <h2>Crop Recommendation Form</h2>
+            <form action="/predict" method="POST">
+                <label for="nitrogen">Nitrogen (in kg/ha) [Recommended: 0-145 kg/ha]:</label>
+                <input type="number" id="nitrogen" name="nitrogen" min="0" max="145" required>
+                
+                <label for="phosphorus">Phosphorus (in kg/ha) [Recommended: 4-150 kg/ha]:</label>
+                <input type="number" id="phosphorus" name="phosphorus" min="4" max="150" required>
+                
+                <label for="potassium">Potassium (in kg/ha) [Recommended: 4-206 kg/ha]:</label>
+                <input type="number" id="potassium" name="potassium" min="4" max="206" required>
+                
+                <label for="temperature">Temperature (°C) [Recommended: 9°C - 44°C]:</label>
+                <input type="number" id="temperature" name="temperature" min="9" max="44" required>
+                
+                <label for="humidity">Humidity (%) [Recommended: 14%-100%]:</label>
+                <input type="number" id="humidity" name="humidity" min="14" max="100" required>
+                
+                <label for="ph">pH (1-14) [Recommended: 3-10]:</label>
+                <input type="number" id="ph" name="ph" min="3" max="10" step="0.1" required>
+                
+                <label for="rainfall">Rainfall (in mm) [Recommended: 20-300 mm/year]:</label>
+                <input type="number" id="rainfall" name="rainfall" min="20" max="300" required>
+                
+                <button type="submit">Predict Crop</button>
+            </form>
+
+            {% if prediction_text %}
+            <div class="prediction">
+                <h3>{{ prediction_text }}</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Crop Recommendation System | All Rights Reserved</p>
+    </footer>
+</body>
+</html>
